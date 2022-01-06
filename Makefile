@@ -1,6 +1,6 @@
-CXX=gcc
-#CFLAGS=-fPIC -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda
-CFLAGS=-fPIC -fopenmp
+CXX=clang
+OMPFLAGS=-fopenmp -fopenmp-targets=nvptx64
+CFLAGS=-fPIC $(OMPFLAGS)
 
 all: libgputool.so
 	$(CXX) $(CFLAGS) -L. -lgputool -o main main.c
