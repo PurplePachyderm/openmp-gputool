@@ -29,3 +29,4 @@ make
 - [A guide on how to build LLVM with Nvidia offloading support](https://freecompilercamp.org/llvm-openmp-build/)
 - [Webinar on  OpenMP GPU programming (YouTube video)](https://www.youtube.com/watch?v=uVcvecgdW7g)
 - [Webinar on  OpenMP GPU programming (PDF slides)](https://www.openmp.org/wp-content/uploads/2021-10-20-Webinar-OpenMP-Offload-Programming-Introduction.pdf)
+- [Some OMPT examples and slides](https://git.rwth-aachen.de/OpenMPTools/OMPT-Examples)
