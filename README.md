@@ -30,3 +30,5 @@ make
 - [Webinar on  OpenMP GPU programming (YouTube video)](https://www.youtube.com/watch?v=uVcvecgdW7g)
 - [Webinar on  OpenMP GPU programming (PDF slides)](https://www.openmp.org/wp-content/uploads/2021-10-20-Webinar-OpenMP-Offload-Programming-Introduction.pdf)
 - [Some OMPT examples and slides](https://git.rwth-aachen.de/OpenMPTools/OMPT-Examples)
+- [LLVM's OpenMP development status](https://clang.llvm.org/docs/OpenMPSupport.html)
+- [GCC's OpenMP development status](https://gcc.gnu.org/onlinedocs/libgomp/OpenMP-Implementation-Status.html)

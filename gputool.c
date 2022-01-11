@@ -1,7 +1,31 @@
-#include "gputool.h"
+#include "include/gputool.h"
 
 
 	// Callback functions
+
+static void on_ompt_callback_device_initialize(
+	int device_num,
+	const char *type,
+	ompt_device_t *device,
+	ompt_function_lookup_t lookup,
+	const char *documentation
+) {
+
+	printf("Entering ompt_callback_device_initialization\n");
+	printf("Leaving ompt_callback_device_initialization\n");
+}
+
+
+
+static void on_ompt_callback_device_finalize(
+	int device_num
+) {
+
+	printf("Entering ompt_callback_device_initialization\n");
+	printf("Leaving ompt_callback_device_initialization\n");
+}
+
+
 
 // Executed at OpenMP initialization
 int ompt_initialize(
@@ -10,8 +34,19 @@ int ompt_initialize(
 ) {
 
 	printf("Entering ompt_initialize\n");
-	printf("Leaving ompt_initialize\n");
 
+	// Setup
+	ompt_set_callback_t ompt_set_callback = (ompt_set_callback_t)lookup("ompt_set_callback");
+	ompt_get_thread_data = (ompt_get_thread_data_t)lookup("ompt_get_thread_data");
+	ompt_get_unique_id = (ompt_get_unique_id_t)lookup("ompt_get_unique_id");
+
+
+	// Register callbacks
+	// (device-related OMTP callbacks don't seem to be supported by any compiler for now)
+	register_callback(ompt_callback_device_finalize);
+	register_callback(ompt_callback_device_initialize);
+
+	printf("Leaving ompt_initialize\n");
 	return 1; // success: activates tool
 }
 

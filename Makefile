@@ -1,13 +1,15 @@
 CXX=clang
 OMPFLAGS=-fopenmp -fopenmp-targets=nvptx64
-CFLAGS=-fPIC $(OMPFLAGS)
+CFLAGS=$(OMPFLAGS) -Wall
 
-all: libgputool.so
-	$(CXX) $(CFLAGS) -L. -lgputool -o main main.c
+all: libgputool.so tests.o
+	$(CXX) $(CFLAGS) -L. -lgputool -o main tests.o main.c
 
-libgputool.so:
-	$(CXX) $(CFLAGS) -c -o gputool.o gputool.c
-	$(CXX) $(CFLAGS) -shared -o libgputool.so gputool.o
+libgputool.so: gputool.c
+	$(CXX) $(CFLAGS) -shared -fPIC -o libgputool.so gputool.c
+
+tests.o: tests.c
+	$(CXX) $(CFLAGS) -c -o tests.o tests.c
 
 
 # Phony
