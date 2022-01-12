@@ -3,6 +3,24 @@
 
 	// Callback functions
 
+static void on_ompt_callback_parallel_begin(
+	ompt_data_t *encountering_task_data,
+	const ompt_frame_t *encountering_task_frame, ompt_data_t *parallel_data,
+	uint32_t requested_parallelism, int flags, const void *codeptr_ra
+) {
+
+	printf("Entering parallel region\n");
+}
+
+static void on_ompt_callback_parallel_end(
+	ompt_data_t *parallel_data,
+	ompt_data_t *encountering_task_data,
+	int flags, const void *codeptr_ra
+) {
+	printf("Leaving parallel region\n");
+}
+
+
 static void on_ompt_callback_device_initialize(
 	int device_num,
 	const char *type,
@@ -15,8 +33,6 @@ static void on_ompt_callback_device_initialize(
 	printf("Leaving ompt_callback_device_initialization\n");
 }
 
-
-
 static void on_ompt_callback_device_finalize(
 	int device_num
 ) {
@@ -27,7 +43,7 @@ static void on_ompt_callback_device_finalize(
 
 
 
-// Executed at OpenMP initialization
+	// Tool initialization and finalizatation
 int ompt_initialize(
 	ompt_function_lookup_t lookup,
 	int initial_device_num, ompt_data_t *tool_data
@@ -43,8 +59,11 @@ int ompt_initialize(
 
 	// Register callbacks
 	// (device-related OMTP callbacks don't seem to be supported by any compiler for now)
-	register_callback(ompt_callback_device_finalize);
+	register_callback(ompt_callback_parallel_begin);
+	register_callback(ompt_callback_parallel_end);
+
 	register_callback(ompt_callback_device_initialize);
+	register_callback(ompt_callback_device_finalize);
 
 	printf("Leaving ompt_initialize\n");
 	return 1; // success: activates tool

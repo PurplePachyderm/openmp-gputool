@@ -29,34 +29,3 @@ static ompt_get_unique_id_t ompt_get_unique_id;
 
 static unsigned int nDevices = 0;
 
-
-	// Callback functions
-
-
-int ompt_initialize(
-	ompt_function_lookup_t lookup,
-	int initial_device_num, ompt_data_t *tool_data
-);
-
-void ompt_finalize(ompt_data_t *tool_data);
-
-ompt_start_tool_result_t *ompt_start_tool(
-	unsigned int omp_version,
-	const char *runtime_version
-);
-
-typedef void (*ompt_callback_device_initialize_t) (
-	int device_num,
-	const char *type,
-	ompt_device_t *device,
-	ompt_function_lookup_t lookup,
-	const char *documentation
-);
-
-
-	// Tool initialization function
-
-ompt_start_tool_result_t *ompt_start_tool(
-	unsigned int omp_version,
-	const char *runtime_version
-);

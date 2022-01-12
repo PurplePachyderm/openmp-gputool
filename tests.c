@@ -14,7 +14,7 @@ void launchThreads() {
 void launchSaxpy() {
 
 	srand(time(NULL));
-	int n = 1000;
+	int n = 10000;
 	int nBlocks = 100;
 
 	// Initialize values
